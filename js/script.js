@@ -3,6 +3,8 @@ let randomImageNumber = Math.trunc(Math.random() * 6) + 1;
 let score = 0;
 let answer = false;
 let intervalID;
+let timeID;
+let time = 5;
 
 const number1 = document.querySelector(".number-1");
 const number2 = document.querySelector(".number-2");
@@ -12,7 +14,9 @@ const number5 = document.querySelector(".number-5");
 const number6 = document.querySelector(".number-6");
 
 const labelScore = document.querySelector(".score");
+const labelResult = document.querySelector(".label-result");
 const selectedVariable = document.querySelector(".selected-var");
+const gameStatus = document.querySelector(".heading-secondary");
 
 // FUNCTIONS
 const removeBtnBg = function () {
@@ -24,11 +28,22 @@ const removeBtnBg = function () {
   number6.classList.remove("selected-bg");
 };
 
+const updateTime = function () {
+  gameStatus.textContent = `The dice will change in ${time} seconds.`;
+  time--;
+  console.log("small time");
+};
+
 // EVENT LISTENER
 document.querySelector(".start").addEventListener("click", function () {
+  // SET-INTERVAL
   intervalID = setInterval(() => {
-    console.log("interval begins");
     randomImageNumber = Math.trunc(Math.random() * 6) + 1;
+
+    if (!labelResult.classList.contains("hidden")) {
+      labelResult.classList.add("hidden");
+    }
+
     document
       .querySelector(".image")
       .setAttribute("src", `images/Dice_${randomImageNumber}.png`);
@@ -90,6 +105,11 @@ document.querySelector(".start").addEventListener("click", function () {
     if (answer) {
       score += 5;
       labelScore.textContent = score;
+      labelResult.textContent = "Your guess was correct!";
+      labelResult.classList.toggle("hidden");
+    } else {
+      labelResult.textContent = "Your guess was incorrect!";
+      labelResult.classList.toggle("hidden");
     }
 
     answer = false;
@@ -101,4 +121,5 @@ document.querySelector(".reset").addEventListener("click", function () {
   labelScore.textContent = 0;
   selectedVariable.textContent = "none";
   removeBtnBg();
+  gameStatus.textContent = "Click on start button to start the game!";
 });

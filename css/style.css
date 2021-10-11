@@ -24,21 +24,22 @@ body {
 }
 
 .heading-primary {
-  font-size: 8rem;
+  font-size: 7rem;
   font-weight: 600;
-  margin-bottom: 5rem;
+  margin-bottom: 2rem;
 }
 
 .btn {
   background-color: transparent;
   border: 3px solid #bcbcbc;
-  padding: 1rem 5rem;
+  padding: 0.6rem 5rem;
   color: #bcbcbc;
-  font-size: 5rem;
+  font-size: 4rem;
   font-weight: 300;
   font-family: inherit;
   border-radius: 0.5rem;
   cursor: pointer;
+  justify-self: center;
 }
 
 .selected-bg {
@@ -68,7 +69,7 @@ body {
 }
 
 .image {
-  height: 10rem;
+  height: 8rem;
   width: auto;
 }
 
@@ -99,6 +100,10 @@ body {
 
 .button-container {
   margin-bottom: 3rem;
+}
+
+.hidden {
+  visibility: hidden;
 }
 
 /* MEDIA QUERIES */
