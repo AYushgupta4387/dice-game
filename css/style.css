@@ -1,0 +1,156 @@
+*,
+*::after,
+*::before {
+  box-sizing: border-box;
+  padding: 0;
+  margin: 0;
+}
+
+html {
+  font-size: 62.5%;
+}
+
+body {
+  font-family: "Source Sans Pro", sans-serif;
+  font-size: 3rem;
+  color: #bcbcbc;
+  background-color: #121212;
+}
+
+.main {
+  text-align: center;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.heading-primary {
+  font-size: 8rem;
+  font-weight: 600;
+  margin-bottom: 5rem;
+}
+
+.btn {
+  background-color: transparent;
+  border: 3px solid #bcbcbc;
+  padding: 1rem 5rem;
+  color: #bcbcbc;
+  font-size: 5rem;
+  font-weight: 300;
+  font-family: inherit;
+  border-radius: 0.5rem;
+  cursor: pointer;
+}
+
+.selected-bg {
+  background-color: whitesmoke;
+}
+
+.btn--main {
+  padding: 1rem 5rem;
+  background-color: #73040a;
+  font-size: 5rem;
+  border: 3px solid #bcbcbc;
+  font-weight: 600;
+  font-family: inherit;
+  border-radius: 0.5rem;
+  cursor: pointer;
+  color: #bcbcbc;
+}
+
+.btn--main:not(:last-child) {
+  margin-right: 10rem;
+}
+
+.container-1 {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  margin-bottom: 5rem;
+}
+
+.image {
+  height: 10rem;
+  width: auto;
+}
+
+.numbers-container {
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: auto auto auto;
+  grid-template-rows: auto auto;
+  grid-gap: 2rem 10rem;
+  margin-bottom: 5rem;
+}
+
+.number {
+  justify-self: center;
+}
+
+.heading-secondary {
+  margin-bottom: 3rem;
+}
+
+.label-result {
+  display: inline-block;
+  padding: 0.5rem 1rem;
+  background-color: #bcbcbc;
+  color: #121212;
+  font-weight: 600;
+}
+
+.button-container {
+  margin-bottom: 3rem;
+}
+
+/* MEDIA QUERIES */
+@media only screen and (max-width: 75em) {
+  html {
+    font-size: 56.25%;
+  }
+
+  body {
+    font-size: 2.5rem;
+  }
+
+  .heading-primary {
+    font-size: 5rem;
+    font-weight: 600;
+    margin-bottom: 2rem;
+  }
+
+  .container-1 {
+    margin-bottom: 2rem;
+  }
+
+  .score,
+  .selected-var {
+    display: block;
+  }
+
+  .numbers-container {
+    grid-template-columns: auto auto;
+    grid-template-rows: auto;
+    grid-gap: 2rem 5rem;
+    justify-content: center;
+    margin-bottom: 2rem;
+  }
+
+  .btn {
+    justify-self: center;
+    padding: 0.5rem 5rem;
+    font-size: 4rem;
+  }
+
+  .heading-secondary {
+    font-size: 2rem;
+    margin-bottom: 2rem;
+  }
+
+  .btn--main {
+    padding: 1rem 2rem;
+    font-size: 3rem;
+  }
+  
+  .btn--main:not(:last-child) {
+    margin-right: 2rem;
+  }
+}
