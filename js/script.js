@@ -40,6 +40,74 @@ const updateTime = function () {
 document.querySelector(".start").addEventListener("click", function () {
   timeID = setInterval(updateTime, 1000);
 
+  randomImageNumber = Math.trunc(Math.random() * 6) + 1;
+
+  document
+    .querySelector(".image")
+    .setAttribute("src", `images/Dice_${randomImageNumber}.png`);
+
+  number1.addEventListener("click", function () {
+    selectedVariable.textContent = 1;
+    if (randomImageNumber === Number(number1.textContent)) {
+      answer = true;
+    }
+    removeBtnBg();
+    number1.classList.toggle("selected-bg");
+  });
+
+  number2.addEventListener("click", function () {
+    selectedVariable.textContent = 2;
+    if (randomImageNumber === Number(number2.textContent)) {
+      answer = true;
+    }
+    removeBtnBg();
+    number2.classList.toggle("selected-bg");
+  });
+
+  number3.addEventListener("click", function () {
+    selectedVariable.textContent = 3;
+    if (randomImageNumber === Number(number3.textContent)) {
+      answer = true;
+    }
+    removeBtnBg();
+    number3.classList.toggle("selected-bg");
+  });
+
+  number4.addEventListener("click", function () {
+    selectedVariable.textContent = 4;
+    if (randomImageNumber === Number(number4.textContent)) {
+      answer = true;
+    }
+    removeBtnBg();
+    number4.classList.toggle("selected-bg");
+  });
+
+  number5.addEventListener("click", function () {
+    selectedVariable.textContent = 5;
+    if (randomImageNumber === Number(number5.textContent)) {
+      answer = true;
+    }
+    removeBtnBg();
+    number5.classList.toggle("selected-bg");
+  });
+
+  number6.addEventListener("click", function () {
+    selectedVariable.textContent = 6;
+    if (randomImageNumber === Number(number6.textContent)) {
+      answer = true;
+    }
+    removeBtnBg();
+    number6.classList.toggle("selected-bg");
+  });
+
+  if (answer) {
+    score += 5;
+    labelScore.textContent = score;
+  }
+
+  answer = false;
+  time = 5;
+
   // SET-INTERVAL
   intervalID = setInterval(() => {
     randomImageNumber = Math.trunc(Math.random() * 6) + 1;
@@ -137,4 +205,5 @@ document.querySelector(".reset").addEventListener("click", function () {
   removeBtnBg();
   gameStatus.textContent = "Click on start button to start the game!";
   clearInterval(timeID);
+  time = 5;
 });
