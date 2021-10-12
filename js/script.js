@@ -52,17 +52,15 @@ const numberChanges = function (number, num) {
   number.classList.toggle("selected-bg");
 };
 
-const resultLabelTimeout = function (color) {
-  setTimeout(() => {
-    labelResult.classList.add("hidden");
-    labelResult.classList.remove(color);
-  }, 2000);
-};
-
 const resultLabel = function (result, color) {
   labelResult.textContent = `Your guess was ${result}!`;
   labelResult.classList.remove("hidden");
   labelResult.classList.add(color);
+
+  setTimeout(() => {
+    labelResult.classList.add("hidden");
+    labelResult.classList.remove(color);
+  }, 2000);
 };
 
 const reset = function () {
@@ -124,10 +122,8 @@ document.querySelector(".start").addEventListener("click", function () {
       score += 5;
       labelScore.textContent = score;
       resultLabel("correct", "green");
-      resultLabelTimeout("green");
     } else {
       resultLabel("incorrect", "red");
-      resultLabelTimeout("red");
     }
 
     answer = false;

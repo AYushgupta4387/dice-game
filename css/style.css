@@ -115,7 +115,7 @@ body {
 }
 
 /* MEDIA QUERIES */
-@media only screen and (max-width: 75em) {
+@media only screen and (max-width: 56.25em) { /* 56.25em = 900px */
   html {
     font-size: 56.25%;
   }
