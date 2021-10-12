@@ -32,73 +32,71 @@ const removeBtnBg = function () {
 
 const updateTime = function () {
   time--;
-  gameStatus.textContent = `The dice will change in ${time} seconds.`;
+  gameStatus.textContent = `The dice will change in ${time} ${
+    time > 1 ? "seconds" : "second"
+  }.`;
   console.log("small time");
 };
 
-// EVENT LISTENER
+const changeDiceImage = function (number) {
+  document
+    .querySelector(".image")
+    .setAttribute("src", `images/Dice_${number}.png`);
+};
+
+const numberChanges = function (number, num) {
+  selectedVariable.textContent = num;
+  if (randomImageNumber === Number(number.textContent)) {
+    answer = true;
+  }
+  removeBtnBg();
+  number.classList.toggle("selected-bg");
+};
+
+const resultLabelTimeout = function (color) {
+  setTimeout(() => {
+    labelResult.classList.add("hidden");
+    labelResult.classList.remove(color);
+  }, 2000);
+};
+
+const resultLabel = function (result, color) {
+  labelResult.textContent = `Your guess was ${result}!`;
+  labelResult.classList.remove("hidden");
+  labelResult.classList.add(color);
+};
+
+const reset = function () {
+  score = 0;
+  time = 5;
+  labelScore.textContent = score;
+  selectedVariable.textContent = "none";
+  removeBtnBg();
+
+  if (timeID) {
+    clearInterval(intervalID);
+    clearInterval(timeID);
+  }
+};
+
+// START BUTTON
 document.querySelector(".start").addEventListener("click", function () {
+  gameStatus.textContent = "The dice will change in 5 seconds.";
+  reset();
+
+  // 1 second Interval
   timeID = setInterval(updateTime, 1000);
 
   randomImageNumber = Math.trunc(Math.random() * 6) + 1;
 
-  document
-    .querySelector(".image")
-    .setAttribute("src", `images/Dice_${randomImageNumber}.png`);
+  changeDiceImage(randomImageNumber);
 
-  number1.addEventListener("click", function () {
-    selectedVariable.textContent = 1;
-    if (randomImageNumber === Number(number1.textContent)) {
-      answer = true;
-    }
-    removeBtnBg();
-    number1.classList.toggle("selected-bg");
-  });
-
-  number2.addEventListener("click", function () {
-    selectedVariable.textContent = 2;
-    if (randomImageNumber === Number(number2.textContent)) {
-      answer = true;
-    }
-    removeBtnBg();
-    number2.classList.toggle("selected-bg");
-  });
-
-  number3.addEventListener("click", function () {
-    selectedVariable.textContent = 3;
-    if (randomImageNumber === Number(number3.textContent)) {
-      answer = true;
-    }
-    removeBtnBg();
-    number3.classList.toggle("selected-bg");
-  });
-
-  number4.addEventListener("click", function () {
-    selectedVariable.textContent = 4;
-    if (randomImageNumber === Number(number4.textContent)) {
-      answer = true;
-    }
-    removeBtnBg();
-    number4.classList.toggle("selected-bg");
-  });
-
-  number5.addEventListener("click", function () {
-    selectedVariable.textContent = 5;
-    if (randomImageNumber === Number(number5.textContent)) {
-      answer = true;
-    }
-    removeBtnBg();
-    number5.classList.toggle("selected-bg");
-  });
-
-  number6.addEventListener("click", function () {
-    selectedVariable.textContent = 6;
-    if (randomImageNumber === Number(number6.textContent)) {
-      answer = true;
-    }
-    removeBtnBg();
-    number6.classList.toggle("selected-bg");
-  });
+  number1.addEventListener("click", numberChanges.bind(null, number1, 1));
+  number2.addEventListener("click", numberChanges.bind(null, number2, 2));
+  number3.addEventListener("click", numberChanges.bind(null, number3, 3));
+  number4.addEventListener("click", numberChanges.bind(null, number4, 4));
+  number5.addEventListener("click", numberChanges.bind(null, number5, 5));
+  number6.addEventListener("click", numberChanges.bind(null, number6, 6));
 
   if (answer) {
     score += 5;
@@ -108,102 +106,39 @@ document.querySelector(".start").addEventListener("click", function () {
   answer = false;
   time = 5;
 
-  // SET-INTERVAL
+  // 5 seconds Interval
   intervalID = setInterval(() => {
     randomImageNumber = Math.trunc(Math.random() * 6) + 1;
 
     removeBtnBg();
 
-    document
-      .querySelector(".image")
-      .setAttribute("src", `images/Dice_${randomImageNumber}.png`);
+    changeDiceImage(randomImageNumber);
 
-    number1.addEventListener("click", function () {
-      selectedVariable.textContent = 1;
-      if (randomImageNumber === Number(number1.textContent)) {
-        answer = true;
-      }
-      removeBtnBg();
-      number1.classList.toggle("selected-bg");
-    });
-
-    number2.addEventListener("click", function () {
-      selectedVariable.textContent = 2;
-      if (randomImageNumber === Number(number2.textContent)) {
-        answer = true;
-      }
-      removeBtnBg();
-      number2.classList.toggle("selected-bg");
-    });
-
-    number3.addEventListener("click", function () {
-      selectedVariable.textContent = 3;
-      if (randomImageNumber === Number(number3.textContent)) {
-        answer = true;
-      }
-      removeBtnBg();
-      number3.classList.toggle("selected-bg");
-    });
-
-    number4.addEventListener("click", function () {
-      selectedVariable.textContent = 4;
-      if (randomImageNumber === Number(number4.textContent)) {
-        answer = true;
-      }
-      removeBtnBg();
-      number4.classList.toggle("selected-bg");
-    });
-
-    number5.addEventListener("click", function () {
-      selectedVariable.textContent = 5;
-      if (randomImageNumber === Number(number5.textContent)) {
-        answer = true;
-      }
-      removeBtnBg();
-      number5.classList.toggle("selected-bg");
-    });
-
-    number6.addEventListener("click", function () {
-      selectedVariable.textContent = 6;
-      if (randomImageNumber === Number(number6.textContent)) {
-        answer = true;
-      }
-      removeBtnBg();
-      number6.classList.toggle("selected-bg");
-    });
+    number1.addEventListener("click", numberChanges.bind(null, number1, 1));
+    number2.addEventListener("click", numberChanges.bind(null, number2, 2));
+    number3.addEventListener("click", numberChanges.bind(null, number3, 3));
+    number4.addEventListener("click", numberChanges.bind(null, number4, 4));
+    number5.addEventListener("click", numberChanges.bind(null, number5, 5));
+    number6.addEventListener("click", numberChanges.bind(null, number6, 6));
 
     if (answer) {
       score += 5;
       labelScore.textContent = score;
-      labelResult.textContent = "Your guess was correct!";
-      labelResult.classList.remove("hidden");
-      labelResult.classList.add("green");
-      setTimeout(() => {
-        labelResult.classList.add("hidden");
-        labelResult.classList.remove("green");
-      }, 2000);
+      resultLabel("correct", "green");
+      resultLabelTimeout("green");
     } else {
-      labelResult.textContent = "Your guess was incorrect!";
-      labelResult.classList.remove("hidden");
-      labelResult.classList.add("red");
-      setTimeout(() => {
-        labelResult.classList.add("hidden");
-        labelResult.classList.remove("red");
-      }, 2000);
+      resultLabel("incorrect", "red");
+      resultLabelTimeout("red");
     }
 
     answer = false;
     time = 5;
+    gameStatus.textContent = "The dice will change in 5 seconds.";
   }, 5000);
 });
 
+// RESET BUTTON
 document.querySelector(".reset").addEventListener("click", function () {
-  clearInterval(intervalID);
-  score = 0;
-  labelScore.textContent = score;
-  selectedVariable.textContent = "none";
-  removeBtnBg();
+  reset();
   gameStatus.textContent = "Click on start button to start the game!";
-  clearInterval(timeID);
-  time = 5;
 });
