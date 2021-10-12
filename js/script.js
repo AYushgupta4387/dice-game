@@ -1,3 +1,5 @@
+"use strict";
+
 // VARIABLES
 let randomImageNumber = Math.trunc(Math.random() * 6) + 1;
 let score = 0;
@@ -29,20 +31,20 @@ const removeBtnBg = function () {
 };
 
 const updateTime = function () {
-  gameStatus.textContent = `The dice will change in ${time} seconds.`;
   time--;
+  gameStatus.textContent = `The dice will change in ${time} seconds.`;
   console.log("small time");
 };
 
 // EVENT LISTENER
 document.querySelector(".start").addEventListener("click", function () {
+  timeID = setInterval(updateTime, 1000);
+
   // SET-INTERVAL
   intervalID = setInterval(() => {
     randomImageNumber = Math.trunc(Math.random() * 6) + 1;
 
-    if (!labelResult.classList.contains("hidden")) {
-      labelResult.classList.add("hidden");
-    }
+    removeBtnBg();
 
     document
       .querySelector(".image")
@@ -106,20 +108,33 @@ document.querySelector(".start").addEventListener("click", function () {
       score += 5;
       labelScore.textContent = score;
       labelResult.textContent = "Your guess was correct!";
-      labelResult.classList.toggle("hidden");
+      labelResult.classList.remove("hidden");
+      labelResult.classList.add("green");
+      setTimeout(() => {
+        labelResult.classList.add("hidden");
+        labelResult.classList.remove("green");
+      }, 2000);
     } else {
       labelResult.textContent = "Your guess was incorrect!";
-      labelResult.classList.toggle("hidden");
+      labelResult.classList.remove("hidden");
+      labelResult.classList.add("red");
+      setTimeout(() => {
+        labelResult.classList.add("hidden");
+        labelResult.classList.remove("red");
+      }, 2000);
     }
 
     answer = false;
+    time = 5;
   }, 5000);
 });
 
 document.querySelector(".reset").addEventListener("click", function () {
   clearInterval(intervalID);
-  labelScore.textContent = 0;
+  score = 0;
+  labelScore.textContent = score;
   selectedVariable.textContent = "none";
   removeBtnBg();
   gameStatus.textContent = "Click on start button to start the game!";
+  clearInterval(timeID);
 });
