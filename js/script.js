@@ -35,7 +35,6 @@ const updateTime = function () {
   gameStatus.textContent = `The dice will change in ${time} ${
     time > 1 ? "seconds" : "second"
   }.`;
-  console.log("small time");
 };
 
 const changeDiceImage = function (number) {
